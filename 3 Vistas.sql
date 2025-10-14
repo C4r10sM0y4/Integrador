@@ -319,35 +319,3 @@ GROUP BY
 ORDER BY cantidad_empleados DESC, p.salario DESC;
 
 COMMENT ON VIEW administracion.vista_empleados_por_puesto IS 'Resumen de empleados agrupados por puesto con información salarial';
-
--- ============================================================================
--- 12. CONSULTAS DE VERIFICACIÓN
--- ============================================================================
-
--- Listar todas las vistas creadas
-SELECT
-    schemaname,
-    viewname,
-    viewowner,
-    definition
-FROM pg_views
-WHERE
-    schemaname IN (
-        'operaciones',
-        'administracion'
-    )
-ORDER BY schemaname, viewname;
-
--- Listar vistas con sus comentarios
-SELECT n.nspname AS schema_name, c.relname AS view_name, d.description
-FROM
-    pg_class c
-    JOIN pg_namespace n ON n.oid = c.relnamespace
-    LEFT JOIN pg_description d ON d.objoid = c.oid
-WHERE
-    c.relkind = 'v'
-    AND n.nspname IN (
-        'operaciones',
-        'administracion'
-    )
-ORDER BY n.nspname, c.relname;

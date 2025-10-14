@@ -66,7 +66,3 @@ UPDATE operaciones.vehiculos
 SET estado = 'Asignado' 
 WHERE LOWER(estado) = 'asignado';
 
--- 4. Verificar que funcionó
-SELECT pg_get_constraintdef(oid) 
-FROM pg_constraint 
-WHERE conname = 'vehiculos_estado_check';
