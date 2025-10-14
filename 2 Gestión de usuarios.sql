@@ -2,14 +2,10 @@ CREATE ROLE rol_operaciones_lectura;
 
 GRANT USAGE ON SCHEMA operaciones TO rol_operaciones_lectura;
 
-GRANT
-SELECT
-    ON ALL TABLES IN SCHEMA operaciones TO rol_operaciones_lectura;
+GRANT SELECT ON ALL TABLES IN SCHEMA operaciones TO rol_operaciones_lectura;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA operaciones
-GRANT
-SELECT
-    ON TABLES TO rol_operaciones_lectura;
+GRANT SELECT ON TABLES TO rol_operaciones_lectura;
 
 COMMENT ON ROLE rol_operaciones_lectura IS 'Rol con permisos de solo lectura en el esquema operaciones';
 
@@ -17,29 +13,15 @@ CREATE ROLE rol_operaciones_gestion_completa;
 
 GRANT USAGE ON SCHEMA operaciones TO rol_operaciones_gestion_completa;
 
-GRANT
-SELECT,
-INSERT
-,
-UPDATE,
-DELETE ON ALL TABLES IN SCHEMA operaciones TO rol_operaciones_gestion_completa;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA operaciones TO rol_operaciones_gestion_completa;
 
-GRANT USAGE,
-SELECT
-    ON ALL SEQUENCES IN SCHEMA operaciones TO rol_operaciones_gestion_completa;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA operaciones TO rol_operaciones_gestion_completa;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA operaciones
-GRANT
-SELECT,
-INSERT
-,
-UPDATE,
-DELETE ON TABLES TO rol_operaciones_gestion_completa;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO rol_operaciones_gestion_completa;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA operaciones
-GRANT USAGE,
-SELECT
-    ON SEQUENCES TO rol_operaciones_gestion_completa;
+GRANT USAGE, SELECT ON SEQUENCES TO rol_operaciones_gestion_completa;
 
 COMMENT ON ROLE rol_operaciones_gestion_completa IS 'Rol con permisos completos de gestión en el esquema operaciones';
 
@@ -51,14 +33,10 @@ CREATE ROLE rol_administracion_lectura;
 
 GRANT USAGE ON SCHEMA administracion TO rol_administracion_lectura;
 
-GRANT
-SELECT
-    ON ALL TABLES IN SCHEMA administracion TO rol_administracion_lectura;
+GRANT SELECT ON ALL TABLES IN SCHEMA administracion TO rol_administracion_lectura;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA administracion
-GRANT
-SELECT
-    ON TABLES TO rol_administracion_lectura;
+GRANT SELECT ON TABLES TO rol_administracion_lectura;
 
 COMMENT ON ROLE rol_administracion_lectura IS 'Rol con permisos de solo lectura en el esquema administracion';
 
@@ -67,28 +45,16 @@ CREATE ROLE rol_administracion_gestion_completa;
 GRANT USAGE ON SCHEMA administracion TO rol_administracion_gestion_completa;
 
 GRANT
-SELECT,
-INSERT
-,
-UPDATE,
-DELETE ON ALL TABLES IN SCHEMA administracion TO rol_administracion_gestion_completa;
+SELECT, INSERT,
+UPDATE, DELETE ON ALL TABLES IN SCHEMA administracion TO rol_administracion_gestion_completa;
 
-GRANT USAGE,
-SELECT
-    ON ALL SEQUENCES IN SCHEMA administracion TO rol_administracion_gestion_completa;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA administracion TO rol_administracion_gestion_completa;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA administracion
-GRANT
-SELECT,
-INSERT
-,
-UPDATE,
-DELETE ON TABLES TO rol_administracion_gestion_completa;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO rol_administracion_gestion_completa;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA administracion
-GRANT USAGE,
-SELECT
-    ON SEQUENCES TO rol_administracion_gestion_completa;
+GRANT USAGE, SELECT ON SEQUENCES TO rol_administracion_gestion_completa;
 
 COMMENT ON ROLE rol_administracion_gestion_completa IS 'Rol con permisos completos de gestión en el esquema administracion';
 
@@ -96,9 +62,7 @@ COMMENT ON ROLE rol_administracion_gestion_completa IS 'Rol con permisos complet
 -- 3. CREACIÓN DE USUARIOS ESPECÍFICOS
 -- ============================================================================
 
-CREATE USER usuario_consultor_operaciones
-WITH
-    PASSWORD 'ConsultOp2024!';
+CREATE USER usuario_consultor_operaciones WITH PASSWORD 'ConsultOp2024!';
 
 GRANT rol_operaciones_lectura TO usuario_consultor_operaciones;
 
@@ -110,9 +74,7 @@ GRANT rol_operaciones_gestion_completa TO usuario_gestor_operaciones;
 
 COMMENT ON ROLE usuario_gestor_operaciones IS 'Usuario con permisos completos en operaciones';
 
-CREATE USER usuario_consultor_admin
-WITH
-    PASSWORD 'ConsultAdmin2024!';
+CREATE USER usuario_consultor_admin WITH PASSWORD 'ConsultAdmin2024!';
 
 GRANT rol_administracion_lectura TO usuario_consultor_admin;
 
